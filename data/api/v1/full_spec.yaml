@@ -11223,8 +11223,7 @@ paths:
                 properties:
                   success:
                     description: Message.
-                    example: Embed 5f585b01c81b12ecdf5f40df0382738d0919170639985d3df5e2fc4232865b0c
-                      successfully enabled.
+                    example: Embed 00000000000 successfully enabled.
                     type: string
                 type: object
           description: OK
@@ -11263,8 +11262,7 @@ paths:
                 properties:
                   success:
                     description: Message.
-                    example: Embed 5f585b01c81b12ecdf5f40df0382738d0919170639985d3df5e2fc4232865b0c
-                      successfully revoked.
+                    example: Embed 0000000000000 successfully revoked.
                     type: string
                 type: object
           description: OK
@@ -17299,6 +17297,63 @@ paths:
       tags:
       - Monitors
       x-codegen-request-body-name: body
+  /trace/api/services_by_env:
+    get:
+      description: Get all APM environments and their respective services reporting
+        in the given timeframe.
+      operationId: ListServicesByEnv
+      parameters:
+      - description: Specify the start of the timeframe in epoch seconds to query
+          for. (defaults to 1 hour before end parameter)
+        in: query
+        name: from
+        required: false
+        schema:
+          example: 1588784247
+          format: int64
+          type: integer
+      - description: Specify the end of the timeframe in epoch seconds to query for.
+          (defaults to current time)
+        in: query
+        name: to
+        required: false
+        schema:
+          example: 1588794247
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  items:
+                    description: Service names.
+                    type: string
+                  type: array
+                description: An object containing environments as keys and a list
+                  of services as the values.
+                example: '{"prod": ["service-a", "service-b"], "staging": []}'
+                type: object
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Authentication Error
+      summary: Get all services grouped by environment
+      tags:
+      - APM Services
+      x-unstable: '**Note: This endpoint is in public beta. If you have any feedback,
+
+        contact [Datadog support](https://docs.datadoghq.com/help/).**'
   /v0.3/traces:
     put:
       description: "Datadog\u2019s APM allows you to collect performance metrics by\
@@ -17565,6 +17620,8 @@ servers:
       default: https
       description: The protocol for accessing the API.
 tags:
+- description: APM Services are ways to group code.
+  name: APM Services
 - description: 'Configure your Datadog-AWS integration directly through the Datadog
     API.
 

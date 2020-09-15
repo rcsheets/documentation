@@ -1878,6 +1878,14 @@ api_v1:
     parent: API V1 overview
     weight: 6
     identifier: rate-limits
+  - name: APM Services
+    url: /api/v1/apm-services/
+    identifier: APM Services
+    generated: true
+  - name: Get all services grouped by environment
+    parent: APM Services
+    url: '#get-all-services-grouped-by-environment'
+    generated: true
   - name: AWS Integration
     url: /api/v1/aws-integration/
     identifier: AWS Integration
