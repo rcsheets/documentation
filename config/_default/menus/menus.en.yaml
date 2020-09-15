@@ -2458,21 +2458,25 @@ api_v1:
     url: /api/v1/slack-integration/
     identifier: Slack Integration
     generated: true
-  - name: Delete a Slack integration
+  - name: Get all channels in a Slack integration
     parent: Slack Integration
-    url: '#delete-a-slack-integration'
+    url: '#get-all-channels-in-a-slack-integration'
     generated: true
-  - name: Get info about a Slack integration
+  - name: Create a Slack integration channel
     parent: Slack Integration
-    url: '#get-info-about-a-slack-integration'
+    url: '#create-a-slack-integration-channel'
     generated: true
-  - name: Create a Slack integration
+  - name: Remove a Slack integration channel
     parent: Slack Integration
-    url: '#create-a-slack-integration'
+    url: '#remove-a-slack-integration-channel'
     generated: true
-  - name: Add channels to Slack integration
+  - name: Get a Slack integration channel
     parent: Slack Integration
-    url: '#add-channels-to-slack-integration'
+    url: '#get-a-slack-integration-channel'
+    generated: true
+  - name: Update a Slack integration channel
+    parent: Slack Integration
+    url: '#update-a-slack-integration-channel'
     generated: true
   - name: Snapshots
     url: /api/v1/snapshots/
